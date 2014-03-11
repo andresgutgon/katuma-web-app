@@ -48,4 +48,36 @@ define(function (require) {
 
     new AppRouter();
     Backbone.history.start();
+
+    
+    // LOGIN
+    var User = Backbone.Model.extend({
+        url:"http://localhost:3000/api/v1/users",
+    });
+
+    var user = new User({
+        "email": "ofasdfstnaa@gmail.com",
+        "name": "ndddrico ddstano",
+        "password": "secret",
+        "password_confirmation": "secret"
+    });
+
+    //user.save();
+ 
+    $.ajax({
+        url: "http://localhost:3000/api/v1/users",
+        type: 'POST',
+        dataType: 'json',
+        data: user.attributes,
+        success: function(model, state, response){
+            console.log(model);
+        },
+        error: function(error, e, r){
+            if(error.responseJSON)
+                var error = error.responseJSON.errors;
+                $.each(error, function(index, value){
+                    console.log('ERROR '+(index+1)+': ' + value);
+                });
+        }
+    });
 });
