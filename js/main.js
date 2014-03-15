@@ -56,28 +56,23 @@ define(function (require) {
     });
 
     var user = new User({
-        "email": "ofasdfstnaa@gmail.com",
-        "name": "ndddrico ddstano",
+        "email": "ofasdfdfasdfsastnaa@gmail.com",
+        "name": "ndddriadfaco ddstano",
         "password": "secret",
         "password_confirmation": "secret"
     });
 
-    //user.save();
- 
-    $.ajax({
-        url: "http://localhost:3000/api/v1/users",
-        type: 'POST',
-        dataType: 'json',
-        data: user.attributes,
-        success: function(model, state, response){
-            console.log(model);
-        },
-        error: function(error, e, r){
-            if(error.responseJSON)
-                var error = error.responseJSON.errors;
-                $.each(error, function(index, value){
-                    console.log('ERROR '+(index+1)+': ' + value);
+    user.save(null,{
+        error:function(user, error, request){
+            if(error.responseJSON){
+                var errors = error.responseJSON.errors;
+                $.each(errors, function(index, value){
+                    console.log("ERROR "+(index+1)+": " + value);
                 });
+            }
+        },
+        success:function(user, attributes, request){
+            debugger;
         }
     });
 });
