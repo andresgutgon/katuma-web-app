@@ -48,31 +48,4 @@ define(function (require) {
 
     new AppRouter();
     Backbone.history.start();
-
-    
-    // LOGIN
-    var User = Backbone.Model.extend({
-        url:"http://localhost:3000/api/v1/users",
-    });
-
-    var user = new User({
-        "email": "ofasdfdfasdfsastnaa@gmail.com",
-        "name": "ndddriadfaco ddstano",
-        "password": "secret",
-        "password_confirmation": "secret"
-    });
-
-    user.save(null,{
-        error:function(user, error, request){
-            if(error.responseJSON){
-                var errors = error.responseJSON.errors;
-                $.each(errors, function(index, value){
-                    console.log("ERROR "+(index+1)+": " + value);
-                });
-            }
-        },
-        success:function(user, attributes, request){
-            debugger;
-        }
-    });
 });

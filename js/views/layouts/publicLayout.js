@@ -38,6 +38,10 @@ define(function (require) {
 			"click .signIn": function (event) {
 				event.preventDefault();
 				this.trigger("signIn");
+			},
+			"click #registerUser": function (event) {
+				event.preventDefault();				
+				this.trigger("registerUser", event);
 			}
 		}
 	});

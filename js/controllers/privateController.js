@@ -6,24 +6,18 @@ define(function (require) {
 	var PrivateLayout = require("views/layouts/privateLayout");
 
 	//module
-	var PublicController = Backbone.Marionette.Controller.extend({
-		initialize: function(){
-			var self = this;
-
-			this.layout = new PrivateLayout();
-
-			//layout events
-			this.layout.on("login", function(){ self.signIn(); });
+	var PrivateController = Backbone.Marionette.Controller.extend({
+		initialize: function(options){
+			if (options.user) {
+				this.layout = new PrivateLayout({user:options.user});
+			}
 		},
 		getLayout: function(){
 			return this.layout;
-		},
-		signIn: function(){
-			window.location.hash = "#user";
 		}
 	});
 
 	
 
-	return PublicController;
+	return PrivateController;
 });
