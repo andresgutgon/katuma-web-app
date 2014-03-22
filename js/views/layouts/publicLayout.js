@@ -37,7 +37,7 @@ define(function (require) {
 	    events:{
 			"click .signIn": function (event) {
 				event.preventDefault();
-				this.trigger("signIn");
+				this.trigger("signIn", event);
 			},
 			"click #registerUser": function (event) {
 				event.preventDefault();				

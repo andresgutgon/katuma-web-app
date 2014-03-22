@@ -26,7 +26,34 @@ define(function (require) {
 			return this.layout;
 		},
 		signIn: function(event){
-			this.trigger("signIn");
+			var self = this;
+			var form = $(event.target).parent();
+			var data = {
+				"email": form.find("[type=email]").val(),
+				"password": form.find("[type=password]").val()
+			};
+			
+			var Session = Backbone.Model.extend({
+				url:"http://localhost:3000/api/v1/session",
+			});
+
+			var session = new Session(data);
+
+			session.save(null,{
+				error: function(session, error, request){
+					if(error.responseJSON){
+		                var errors = error.responseJSON.errors;
+		                $.each(errors, function(index, value){
+		                    console.log("ERROR "+(index+1)+": " + value);
+		                });
+		            }
+
+		            session.destroy();
+				},
+				success: function(session, attributes, request){
+					self.trigger('login', session);
+				}
+			})
 		},
 		registerUser: function(event){
 			var self = this;

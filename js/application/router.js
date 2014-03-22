@@ -14,9 +14,13 @@ define(function (require) {
                 self.userModel = userModel;
                 self.navigate("user", userModel);
             });
+
+            KatumaApp.publicModule.on("login",function(session){
+                self.session = session;
+                self.navigate("user", session);
+            });
             
             KatumaApp.privateModule.on("logout",function(){
-                debugger;
                 self.navigate("public");
             });
         },
