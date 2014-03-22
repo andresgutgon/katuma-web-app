@@ -30,14 +30,13 @@ define(function (require) {
 	            var controller = new PrivateController({user:userModel});
 
 	            var layout = controller.getLayout();
-	            
+
 	            if (layout) {
-	            	KatumaApp.mainRegion.show(layout);
+					KatumaApp.mainRegion.show(layout);
 	            }
 	            else{
-	            	KatumaApp.privateModule.trigger("logout");
+					KatumaApp.privateModule.trigger("logout");
 	            }
-	            
 	        });
 	    });
 	};

@@ -40,7 +40,7 @@ define(function (require) {
 				this.trigger("signIn", event);
 			},
 			"click #registerUser": function (event) {
-				event.preventDefault();				
+				event.preventDefault();
 				this.trigger("registerUser", event);
 			}
 		}

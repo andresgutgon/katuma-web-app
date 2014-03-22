@@ -51,18 +51,18 @@ define(function (require) {
 		            session.destroy();
 				},
 				success: function(session, attributes, request){
-					self.trigger('login', session);
+					self.trigger("login", session);
 				}
-			})
+			});
 		},
 		registerUser: function(event){
 			var self = this;
 			var form = $(event.target).parent();
 			var data = {
-		        "email": form.find('#email').val(),
-		        "name": form.find('#name').val(),
-		        "password": form.find('#password').val(),
-		        "password_confirmation": form.find('#repeatPassword').val()
+		        "email": form.find("#email").val(),
+		        "name": form.find("#name").val(),
+		        "password": form.find("#password").val(),
+		        "password_confirmation": form.find("#repeatPassword").val()
 		    };
 
 		    var user = new User(data);
@@ -74,14 +74,14 @@ define(function (require) {
 		                $.each(errors, function(index, value){
 		                    console.log("ERROR "+(index+1)+": " + value);
 		                });
-		            };
+		            }
 
 		            user.destroy();
-		        },
-		        success: function(user, attributes, request){
-		            self.trigger("signIn", user);		        
-		        }
-		    });
+				},
+				success: function(user, attributes, request){
+					self.trigger("signIn", user);
+				}
+			});
 		}
 	});
 
