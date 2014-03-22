@@ -17,30 +17,30 @@ define(function (require) {
 
     var ContentView = Backbone.Marionette.ItemView.extend({
         template: Handlebars.templates.privateContentView,
-        id:"contentView"
+        id:"contentView",
+        initialize:function(options){
+        	this.template = this.template(options.user.attributes);
+        }
     });
 
-	var PublicLayout = Backbone.Marionette.Layout.extend({
+	var PrivateLayout = Backbone.Marionette.Layout.extend({
 	    template: Handlebars.templates.publicLayout,
 	    id:"privateLayout",
 	    regions: {
 	        topbarRegion: "#topbarRegion",
 	        contentRegion: "#contentRegion"
 	    },
+	    initialize:function(options){
+		},
 	    onShow: function(){
 			var topbarView = new TopbarView();
-			var contentView = new ContentView();
+			var contentView = new ContentView({user:this.options.user});
 			
+			console.log(this.options);
 			this.topbarRegion.show(topbarView);
 			this.contentRegion.show(contentView);
-	    },
-	    events:{
-			"click .signIn": function (event) {
-				event.preventDefault();
-				this.trigger("login");
-			}
-		}
+	    }
 	});
 
-	return PublicLayout;
+	return PrivateLayout;
 });

@@ -10,8 +10,14 @@ define(function (require) {
         initialize: function(){
             var self = this;
 
-            KatumaApp.publicModule.on("signIn", function(){
-                self.navigate("user", {trigger: true});
+            KatumaApp.publicModule.on("signIn",function(userModel){
+                self.userModel = userModel;
+                self.navigate("user", userModel);
+            });
+            
+            KatumaApp.privateModule.on("logout",function(){
+                debugger;
+                self.navigate("public");
             });
         },
 
@@ -36,11 +42,12 @@ define(function (require) {
             KatumaApp.publicModule.start();
         },
 
-        user: function(url){
+        user: function(url, event, a){
             (url) ? url : url = "";
+            
             console.log("Url 'user/"+url+"' exist");
 
-            KatumaApp.privateModule.start();
+            KatumaApp.privateModule.start(this.userModel);
         },
     });
 

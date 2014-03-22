@@ -12,20 +12,26 @@ define(function (require) {
 	            var controller = new PublicController();
 	            var layout = controller.getLayout();
 
-	            controller.on("signIn", function(){
-	                KatumaApp.publicModule.trigger("signIn");
+	            controller.on("signIn", function(userModel){
+	                KatumaApp.publicModule.trigger("signIn", userModel);
 	            });
 
 	            KatumaApp.mainRegion.show(layout);
 	        });
 	    });
 
-	    KatumaApp.privateModule.on("start", function(){
+	    KatumaApp.privateModule.on("start", function(userModel){
 	        require(["controllers/privateController"], function (PrivateController) {
-	            KatumaApp.publicModule.stop();
-	            var controller = new PrivateController();
+				KatumaApp.publicModule.stop();
+	            var controller = new PrivateController({user:userModel});
+
 	            var layout = controller.getLayout();
-	            KatumaApp.mainRegion.show(layout);
+	            if (layout) {
+	            	KatumaApp.mainRegion.show(layout);
+	            }
+	            else{
+	            	KatumaApp.privateModule.trigger("logout");
+	            }
 	        });
 	    });
 	};
