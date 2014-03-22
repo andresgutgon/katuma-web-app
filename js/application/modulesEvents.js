@@ -16,6 +16,10 @@ define(function (require) {
 	                KatumaApp.publicModule.trigger("signIn", userModel);
 	            });
 
+	            controller.on("login", function(session){
+	                KatumaApp.publicModule.trigger("login", session);
+	            });
+
 	            KatumaApp.mainRegion.show(layout);
 	        });
 	    });
@@ -26,12 +30,14 @@ define(function (require) {
 	            var controller = new PrivateController({user:userModel});
 
 	            var layout = controller.getLayout();
+	            
 	            if (layout) {
 	            	KatumaApp.mainRegion.show(layout);
 	            }
 	            else{
 	            	KatumaApp.privateModule.trigger("logout");
 	            }
+	            
 	        });
 	    });
 	};
