@@ -47,19 +47,15 @@ define(function (require) {
 		 * @param  {[type]} options [description]
 		 * @return {[type]}         [description]
 		 */
-		createSession:function(options){
-			var Session = Backbone.Model.extend({
-				url:url+"session",
-			});
-
-			var session = new Session(options.data);
-
-			session.save(null,{
-				error: options.error,
+		createSession:function(options){			
+			$.ajax({
+		        url: url+"session",
+		        type: "POST",
+				dataType: "json",
+				data: options.data,
+		        error: options.error,
 				success: options.success
-			});
-
-			return session;
+		    });
 		},
 
 		/**
@@ -72,7 +68,6 @@ define(function (require) {
 			$.ajax({
 		        url: url+"users/"+sessionModel.get("user_id"),
 		        type: "GET",
-				dataType: "json",
 				headers:{
 					"Content-Type":"application/json",
 					"Authorization": "Token "+sessionModel.get("access_token")+""

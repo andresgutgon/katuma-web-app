@@ -37,13 +37,13 @@ define(function (require) {
 	    },
 	    navigate: function(url){
 			var contentView;
-			var leftButton = this.topbarRegion.$el.find('#leftButton');
+			var leftButton = this.topbarRegion.$el.find("#leftButton");
 			
 			if( url === "welcome" || url === "/"){
 				contentView = new WelcomeView();
 
 				leftButton
-					.attr('href','#createUser')
+					.attr("href","#createUser")
 					.text("Sing Up");
 			}
 			else if ( url === "createUser"){
@@ -91,19 +91,23 @@ define(function (require) {
 		    //call to the server
 		    this.ServerManagment.createUser(createUserOptions);
 		},
-		signIn: function(event){
+		signIn: function(){
 			var self = this;
 			var topbarView = this.topbarRegion.currentView;
 			var data = topbarView.getFormData();
-			
+			var data = {
+				"email": "a@a.com",
+				"password": "a"
+			};
 			var options = {
 				data:data,
-				error: function(session, error, request){
+				error: function(error){
 					console.warn("ERROR in Sign In:"+error.statusText);
-
-		            session.destroy();
 				},
-				success: function(sessionModel, attributes, request){
+				success: function(sessionData){
+					var SessionModel = Backbone.Model.extend();
+					var sessionModel = new SessionModel(sessionData);
+
 					self.getUserData(sessionModel);
 				}
 			};
@@ -115,15 +119,14 @@ define(function (require) {
 
 			var options = {
 				sessionModel: sessionModel,
-				error: function(session, error, request){
+				error: function(error){
+					debugger;
 					if(error.responseJSON){
 		                var errors = error.responseJSON.errors;
 		                $.each(errors, function(index, value){
 		                    console.log("ERROR "+(index+1)+": " + value);
 		                });
 		            }
-
-		            session.destroy();
 				},
 				success: function(response){
 					var userData = response.users[0];				
