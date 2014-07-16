@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -6,6 +6,9 @@ module.exports = function(grunt) {
       index: '.'
     },
     browserify: {
+      bundleOptions: {
+        debug: true // Source Maps
+      },
       dev: {
         files: {
           '<%= paths.index %>/js/bundle.js': ['<%= paths.index %>/js/app.js'],
