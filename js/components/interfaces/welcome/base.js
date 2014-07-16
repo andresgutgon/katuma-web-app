@@ -5,7 +5,7 @@
 
 var React = require('react')
   , Header = require('../../header')
-  // , Footer = require('./../footer')
+  // , Footer = require('../../footer')
   , WelcomeBody = require('./body')
   , WelcomeInterface;
 

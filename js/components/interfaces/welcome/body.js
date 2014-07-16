@@ -5,7 +5,14 @@
 
 var React = require('react')
   , MailChimpForm = require('./mailChimp-form')
-  , Body;
+  , Translate = require('react-translate-component')
+  , Body
+  , _t;
+
+// this is a counterpart-style convenience function that
+// returns a React component
+_t = Translate.translate;
+
 
 Body = React.createClass({
   /**
@@ -18,8 +25,8 @@ Body = React.createClass({
         <div className="jumbotron">
           <div className="container">
             <div className="row header">
-              <h1>KATUMA</h1>
-              <h2 className="slogan">Skip the middleman, buy directly from the providers.</h2>
+              <h1>{_t('katuma.welcome.header.title')}</h1>
+              <h2 className="slogan">{_t('katuma.welcome.header.slogan')}</h2>
             </div>
           </div>
 
@@ -27,13 +34,13 @@ Body = React.createClass({
             <div className="container">
               <div className="row">
                 <div className="col-lg-4">
-                  <p>Easily create collaborative consumption groups.</p>
+                  <p>{_t('katuma.welcome.services.s_1')}</p>
                 </div>
                 <div className="col-lg-4">
-                  <p>Build a meaningful relationship with the providers.</p>
+                  <p>{_t('katuma.welcome.services.s_2')}</p>
                 </div>
                 <div className="col-lg-4">
-                  <p>An alternative marketplace for providers.</p>
+                  <p>{_t('katuma.welcome.services.s_3')}</p>
                 </div>
               </div>
             </div>
@@ -44,7 +51,7 @@ Body = React.createClass({
         <div className="container signin">
           <div className="row description">
             <div className="col-lg-12">
-              <p><strong>KATUMA</strong> is a <strong>tool</strong> for <strong>collaborative consumption</strong> groups administrators, members and providers.</p>
+              <Translate component={React.DOM.p} unsafe={true}>katuma.welcome.signin.description</Translate>
             </div>
           </div>
 
@@ -58,7 +65,7 @@ Body = React.createClass({
               <div className="col-lg-4">
                 <p>
                   <a href="https://github.com/coopdevs">
-                    <i className="fa fa-github"></i> <span>KATUMA is open source</span>
+                    <i className="fa fa-github"></i> <span>{_t('katuma.welcome.footer.github')}</span>
                   </a>
                 </p>
 
@@ -67,14 +74,14 @@ Body = React.createClass({
               <div className="col-lg-4">
                 <p>
                   <a href="https://twitter.com/katuma_org">
-                    <i className="fa fa-twitter"></i> <span>Follow us on twitter</span>
+                    <i className="fa fa-twitter"></i> <span>{_t('katuma.welcome.footer.twitter')}</span>
                   </a>
                 </p>
               </div>
               <div className="col-lg-4">
                 <p>
                   <a href="mailto:info@katuma.org">
-                    <i className="fa fa-envelope"></i> <span>Contact us</span>
+                    <i className="fa fa-envelope"></i> <span>{_t('katuma.welcome.footer.contact')}</span>
                   </a>
                 </p>
               </div>
