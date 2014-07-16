@@ -3,14 +3,15 @@
 'use strict';
 
 var React = require('react')
+  , UIConstants = require('../constants/ui')
   , LanguageSwitcher = require('./language-swicher')
   , Footer;
 
 Footer = React.createClass({
 
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
-      locales: ['en', 'es', 'ca'],
+      locales: UIConstants.LOCALES_ARRAY,
     };
   },
 
