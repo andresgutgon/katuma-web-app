@@ -12,20 +12,17 @@ Install the dependencies:
 
     $ cd katuma_webApp
     $ npm install
-    $ bower install
 
-Run grunt "watch" task to compile handlebar template and less css.
+Run grunt to see in localhost:8000 the code
 
     $ grunt watch
 
 ## Frameworks and tools that we are using:
 
 - Backbone http://backbonejs.org/
-- Marionette http://marionettejs.com/#download
 - Bootstrap http://getbootstrap.com/
-- Less.css http://lesscss.org/
 - Grunt.js http://gruntjs.com/
-- Handlebars http://handlebarsjs.com/
-- Require.js http://requirejs.org/
+- ReactJS http://facebook.github.io/react
+- Counterpart (I18n) https://github.com/martinandert/counterpart
 
 

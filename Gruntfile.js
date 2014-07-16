@@ -1,65 +1,45 @@
-"use strict";
-
 module.exports = function(grunt) {
-	grunt.initConfig({
-		less: {
-			development: {
-				options: {
-					compress: true,
-					yuicompress: true,
-					optimization: 2
-				},
-				files: {
-					// target.css file: source.less file
-					"css/main.css": "css/main.less"
-				}
-			}
-		},
-		handlebars: {
-			compile: {
-				files: {
-					"js/templates.js": ["js/templates/*.handlebars"]
-				}
-			},
-			options: {
-				namespace: "Handlebars.templates",
-				// TODO I don't know why this is necessary.
-				// Looks as is if precompiler and interpreter
-				// don't work the same way.
-				processName: function(filePath) {
-					// input:  templates/name.handlebars
-					var pieces = filePath.split("/");
-					    pieces = pieces[pieces.length - 1].split(".");
-					// output: name
-					return pieces[0];
-				}
-			}
-		},
-		shell: {
-			gather_public_handlebar_files: {
-				command: "cp -f js/Modules/Public/Templates/* js/_templates"
-			},
-			gather_private_handlebar_files: {
-				command: "cp -f js/Modules/Private/Templates/* js/_templates",
-			},
-			handlebars: {
-				command: "handlebars js/_templates/*.handlebars -f js/_templates.js"
-			}
-		},
-		watch: {
-			scripts: {
-				files: ["js/Modules/Public/Templates/*.handlebars", "js/Modules/Private/Templates/*.handlebars","css/*.less"],
-				tasks: ["shell:gather_public_handlebar_files","shell:gather_private_handlebar_files", "shell:handlebars","less"]
-			}
-		}
-	});
 
-	// Load modules
-	grunt.loadNpmTasks("grunt-contrib-handlebars");
-	grunt.loadNpmTasks("grunt-contrib-less");
-	grunt.loadNpmTasks("grunt-contrib-watch");
-	grunt.loadNpmTasks("grunt-shell");
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    paths: {
+      index: '.'
+    },
+    browserify: {
+      dev: {
+        files: {
+          '<%= paths.index %>/js/bundle.js': ['<%= paths.index %>/js/app.js'],
+        },
+        options: {
+          transform: ['reactify']
+        }
+      }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 8000,
+          base: '<%= paths.index %>'
+        }
+      }
+    },
+    watch: {
+      options: {
+        spawn: false
+      },
+      dev: {
+        files: [
+          '<%= paths.index %>/js/**/*.js',
+          '<%= paths.index %>/scripts/**/*.jsx'
+        ],
+        tasks: ['browserify']
+      }
+    }
+  });
 
-	// Set default command
-	grunt.registerTask("default", ["watch"]);
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-browserify');
+
+  grunt.registerTask('default', ['browserify', 'connect', 'watch']);
 };
