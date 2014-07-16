@@ -8,24 +8,15 @@ var React = require('react')
   , WelcomeBody = require('./body')
   , WelcomeInterface;
 
-/**
- * Retrieve the current TODO data from the TodoStore
- */
-function getTodoState() {
-  return {
-    allTodos: TodoStore.getAll(),
-    areAllComplete: TodoStore.areAllComplete()
-  };
-}
-
-var WelcomeInterface = React.createClass({
+WelcomeInterface = React.createClass({
   /**
    * @return {object}
    */
   render: function () {
     return (
-      <div>
+      <div id="publicLayout">
         <Header />
+        <WelcomeBody />
       </div>
     );
   },

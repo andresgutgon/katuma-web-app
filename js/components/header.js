@@ -5,17 +5,7 @@
 var React = require('react')
   , Header;
 
-/**
- * Retrieve the current TODO data from the TodoStore
- */
-function getTodoState() {
-  return {
-    allTodos: TodoStore.getAll(),
-    areAllComplete: TodoStore.areAllComplete()
-  };
-}
-
-var Header = React.createClass({
+Header = React.createClass({
   /**
    * @return {object}
    */
@@ -40,13 +30,9 @@ var Header = React.createClass({
                 <form className="navbar-form navbar-right">
                     <div className="form-group">
                         <input type="email" placeholder="Email" className="form-control" />
-                    </div>
-
-                    <div className="form-group">
+                    </div> <div className="form-group">
                         <input type="password" placeholder="Password" className="form-control" />
-                    </div>
-
-                    <button id="" type="submit" className="btn btn-success signIn">Sign in</button>
+                    </div> <button type="submit" className="btn btn-success signIn">Sign in</button>
                 </form>
             </div>
         </div>
