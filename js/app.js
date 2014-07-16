@@ -17,7 +17,7 @@ counterpart.registerTranslations('en', require('../locales/en'));
 counterpart.registerTranslations('es', require('../locales/es'));
 counterpart.registerTranslations('ca', require('../locales/ca'));
 
-counterpart.setLocale('es');
+counterpart.setLocale('ca');
 
 React.renderComponent(
   <WelcomeInterface />,

@@ -30,7 +30,7 @@ module.exports = function(grunt) {
       dev: {
         files: [
           '<%= paths.index %>/js/**/*.js',
-          '<%= paths.index %>/scripts/**/*.jsx'
+          '<%= paths.index %>/locales/**/*.js'
         ],
         tasks: ['browserify']
       }
