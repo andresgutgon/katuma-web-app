@@ -2,5 +2,5 @@
  * UI constants
  */
 module.exports = {
-  LOCALES_ARRAY: ['en', 'es'],
+  LOCALES_ARRAY: ['en', 'es', 'ca'],
 };
