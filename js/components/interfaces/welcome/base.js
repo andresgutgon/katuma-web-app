@@ -5,11 +5,18 @@
 
 var React = require('react')
   , Header = require('../../header')
-  // , Footer = require('../../footer')
+  , Footer = require('../../footer')
   , WelcomeBody = require('./body')
   , WelcomeInterface;
 
 WelcomeInterface = React.createClass({
+  /**
+   * When locale swicher change force update
+   */
+  _onLocaleChange: function () {
+    this.forceUpdate();
+  },
+
   /**
    * @return {object}
    */
@@ -18,6 +25,7 @@ WelcomeInterface = React.createClass({
       <div id="publicLayout">
         <Header />
         <WelcomeBody />
+        <Footer onLocaleChange={this._onLocaleChange} />
       </div>
     );
   },

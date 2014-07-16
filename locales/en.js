@@ -2,6 +2,11 @@
 
 module.exports = {
   katuma: {
+    languages: {
+      en: 'English',
+      es: 'Spanish',
+      ca: 'Catalan'
+    },
     welcome: {
       header: {
         title: "KATUMA",
