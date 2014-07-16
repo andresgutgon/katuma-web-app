@@ -36,9 +36,7 @@ MailchimpForm = React.createClass({
                     <input type="text" name="b_c1fa2ee78d0632dc9cecbffab_046995e05b" value="" />
                   </div>
                   <input type="email" value="" name="EMAIL" className="required email" id="mce-EMAIL" placeholder={i18n_placeholder} />
-                </div>
-
-                <input type="submit" value={i18n_button} name="subscribe" id="mc-embedded-subscribe" />
+                </div> <input type="submit" value={i18n_button} name="subscribe" id="mc-embedded-subscribe" />
               </div>
 
               <div id="mce-responses" className="clear">
