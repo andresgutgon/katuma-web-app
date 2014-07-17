@@ -4,17 +4,20 @@
 
 var React = require('react')
   , LanguageSwitcher
-  , counterpart = require('counterpart')
-  , Translate   = require('react-translate-component')
-  , _t;
-
-// this is a counterpart-style convenience function that
-// returns a React component
-_t = Translate.translate;
+  , UIConstants = require('../constants/ui')
+  , I18n = require('../lib/i18n')
+  , Translate = I18n.Translate;
 
 LanguageSwitcher = React.createClass({
+
+  getDefaultProps: function () {
+    return {
+      locales: UIConstants.LOCALES_ARRAY,
+    };
+  },
+
   handleChange: function (event) {
-    counterpart.setLocale(event.target.value);
+    I18n.setLocale(event.target.value);
     this.props.onLocaleChange();
   },
 
@@ -26,7 +29,7 @@ LanguageSwitcher = React.createClass({
     });
 
     return (
-      <select defaultValue={counterpart.getLocale()} onChange={this.handleChange}>
+      <select defaultValue={I18n.getLocale()} onChange={this.handleChange}>
         {options}
       </select>
     );

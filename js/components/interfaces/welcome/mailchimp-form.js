@@ -5,8 +5,8 @@
 
 var React = require('react')
   , MailchimpForm
-  , counterpart = require('counterpart')
-  , Translate = require('react-translate-component')
+  , I18n = require('../../../lib/i18n')
+  , Translate = I18n.Translate
   , Body
   , _t;
 
@@ -19,8 +19,9 @@ MailchimpForm = React.createClass({
    * @return {object}
    */
   render: function () {
-    var i18n_placeholder = counterpart.translate('katuma.welcome.signin.placeholder')
-      , i18n_button = counterpart.translate('katuma.welcome.signin.submit');
+    var i18n_placeholder = I18n.counterpart.translate('katuma.welcome.signin.placeholder')
+      , i18n_button = I18n.counterpart.translate('katuma.welcome.signin.submit');
+
     return (
       <div className="row register">
         <div className="col-lg-12">
