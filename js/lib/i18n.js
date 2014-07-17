@@ -1,5 +1,13 @@
 'use strict';
 
+/**
+ * This Library use two dependencies:
+ *  1. counterpart - https://github.com/martinandert/counterpart
+ *  2. react-translate-component - https://github.com/martinandert/react-translate-component
+ *
+ * Counterpart is the lib that manage translations and fetch data from our locales folder.
+ */
+
 var Translate = require('react-translate-component')
   , counterpart = require('counterpart')
   , I18nLib = {};
