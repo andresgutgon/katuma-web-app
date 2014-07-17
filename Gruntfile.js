@@ -1,9 +1,15 @@
 module.exports = function (grunt) {
+  var config
+    , growl = require('growl');
+
+  config = {
+    index_path: '.'
+  };
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     paths: {
-      index: '.'
+      index: config.index_path
     },
     browserify: {
       bundleOptions: {
@@ -49,14 +55,16 @@ module.exports = function (grunt) {
           '<%= paths.index %>/js/**/*.js',
           '<%= paths.index %>/locales/**/*.js'
         ],
-        tasks: ['browserify:dev']
+        tasks: ['browserify:dev', 'ready']
       }
-    }
+    },
   });
 
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-browserify');
+  grunt.registerTask('ready', function () {
+    growl('Ready to rumble!', {title: 'Katuma!', image: 'Console'});
+  });
 
-  grunt.registerTask('default', ['browserify:dev', 'connect', 'watch']);
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
+  grunt.registerTask('default', ['browserify:dev', 'ready', 'watch']);
 };

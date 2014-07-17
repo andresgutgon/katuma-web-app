@@ -12,10 +12,12 @@ Install the dependencies:
 
     $ cd katuma_webApp
     $ npm install
+    $ bundle install
 
-Run grunt to see in localhost:8000 the code
+To see in the browser in localhost:8000, run this:
 
-    $ grunt watch
+    $ cd katuma_webApp
+    $ ./development.js
 
 ## Frameworks and tools that we are using:
 
