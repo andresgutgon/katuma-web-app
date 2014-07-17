@@ -14,7 +14,21 @@ module.exports = function (grunt) {
           '<%= paths.index %>/js/bundle.js': ['<%= paths.index %>/js/app.js'],
         },
         options: {
-          transform: ['reactify']
+          transform: ['reactify'],
+          alias: [
+            './js/enviroments/development.js:env'
+          ]
+        }
+      },
+      prod: {
+        files: {
+          '<%= paths.index %>/js/bundle.min.js': ['<%= paths.index %>/js/app.js'],
+        },
+        options: {
+          transform: ['reactify'],
+          alias: [
+            './js/enviroments/production.js:env'
+          ]
         }
       }
     },
@@ -35,7 +49,7 @@ module.exports = function (grunt) {
           '<%= paths.index %>/js/**/*.js',
           '<%= paths.index %>/locales/**/*.js'
         ],
-        tasks: ['browserify']
+        tasks: ['browserify:dev']
       }
     }
   });
@@ -44,5 +58,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('default', ['browserify', 'connect', 'watch']);
+  grunt.registerTask('default', ['browserify:dev', 'connect', 'watch']);
 };
