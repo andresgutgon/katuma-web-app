@@ -55,6 +55,8 @@ module.exports = function (grunt) {
           '<%= paths.index %>/js/**/*.js',
           '<%= paths.index %>/locales/**/*.js'
         ],
+        // TODO: try watchify instead of this watch:
+        // https://gist.github.com/WickyNilliams/d0fd94d84ac27feb93fe
         tasks: ['browserify:dev', 'ready']
       }
     },
