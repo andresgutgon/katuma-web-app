@@ -14,33 +14,10 @@
     "dojo"          : false,
 
     "predef"        : [
-        "Teambox"
-      , "_"
-      , "Backbone"
-      , "Marionette"
-      , "Templates"
-      , "Position"
-      , "Sortable"
-      , "I18n"
-      , "Modernizr"
-      , "Pusher"
-      , "KeyEvent"
-      , "chrome"
-      , "define"
-      , "Raphael"
-      , "CronutFactory"
-      , "CrumbleFactory"
-      , "Sanitizer"
-      , "Notify"
-      , "timeEvent"
-      , "timeEventEnd"
-      , "timestampEvent"
-      , "Raven"
-      , "document"
+       "document"
       , "window"
       , "navigator"
       , "location"
-      , "Strophe"
     ],
 
     "indent"        : 2,
